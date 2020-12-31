@@ -1,0 +1,11 @@
+[Unit]
+Description=my-investments-bot Daemon
+After=network.target
+
+[Service]
+WorkingDirectory=%h/workspace/my-investments-bot
+ExecStart=/home/pi/.pyenv/shims/pipenv run python3 %h/workspace/my-investments-bot/app.py
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

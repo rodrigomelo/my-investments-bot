@@ -12,6 +12,10 @@ def start(update, context):
 def help(update, context):
     update.message.reply_text('Help!')
 
+def countries(update, context):
+    response = requests.get("http://127.0.0.1:5000/api/countries")
+    update.message.reply_text(response.json())
+
 def traders(update, context):
     response = requests.get("http://127.0.0.1:5000/api/traders")
     update.message.reply_text(response.json())
@@ -32,6 +36,7 @@ def main():
 
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("countries", countries))
     dp.add_handler(CommandHandler("traders", traders))
     dp.add_handler(CommandHandler("trades", trades))
     dp.add_handler(MessageHandler(Filters.text, echo))
